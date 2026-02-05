@@ -33,10 +33,10 @@ module BulletTrain
     end
 
     def self.set_configuration(application_class)
-      application_class.config.to_prepare do
+      ActiveSupport.on_load(:action_controller) do
         Doorkeeper::ApplicationController.layout "devise"
 
-        if Doorkeeper::TokensController
+        if defined? Doorkeeper::TokensController
           require_relative "../tokens_controller"
         end
       end

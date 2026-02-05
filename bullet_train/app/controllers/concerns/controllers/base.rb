@@ -17,7 +17,7 @@ module Controllers::Base
     # TODO Extract this into an optional `bullet_train-sentry` package.
     before_action :set_sentry_context
 
-    skip_before_action :verify_authenticity_token, if: -> { controller_name == "sessions" && action_name == "create" }
+    skip_forgery_protection if: -> { controller_name == "sessions" && action_name == "create" }
 
     rescue_from CanCan::AccessDenied do |exception|
       if current_user.nil?

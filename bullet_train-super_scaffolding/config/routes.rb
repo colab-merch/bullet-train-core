@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       shallow do
-        resources :teams, extending do
+        resources :teams, **extending do
           unless scaffolding_things_disabled?
             namespace :scaffolding do
               namespace :absolutely_abstract do

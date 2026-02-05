@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       shallow do
-        resources :teams, extending do
+        resources :teams, **extending do
           namespace :webhooks do
             namespace :outgoing do
               resources :endpoints, defaults: {format: :json}
