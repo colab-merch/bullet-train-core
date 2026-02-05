@@ -27,7 +27,6 @@ require "nice_partials"
 require "figaro"
 require "commonmarker"
 require "pagy"
-require "devise/pwned_password"
 
 module BulletTrain
   mattr_accessor :routing_concerns, default: []

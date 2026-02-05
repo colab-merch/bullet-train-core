@@ -69,7 +69,6 @@ PATH
       colorize
       commonmarker (>= 2.7.0)
       devise (~> 5.0)
-      devise-pwned_password
       fastimage
       figaro
       http_accept_language
@@ -203,9 +202,6 @@ GEM
       railties (>= 7.0)
       responders
       warden (~> 1.2.3)
-    devise-pwned_password (0.2.0)
-      devise (>= 4, < 6)
-      pwned (~> 2.4)
     docile (1.4.1)
     doorkeeper (5.8.1)
       railties (>= 5)
@@ -317,7 +313,6 @@ GEM
     psych (5.3.1)
       date
       stringio
-    pwned (2.4.1)
     racc (1.8.1)
     rack (3.2.6)
     rack-protection (4.1.1)
@@ -472,4 +467,4 @@ DEPENDENCIES
   standard
 
 BUNDLED WITH
-   2.6.9
+  4.0.3
