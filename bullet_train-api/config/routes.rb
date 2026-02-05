@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   namespace :account do
     shallow do
-      resources :teams, extending do
+      resources :teams, **extending do
         namespace :platform do
           resources :applications do
             resources :access_tokens
