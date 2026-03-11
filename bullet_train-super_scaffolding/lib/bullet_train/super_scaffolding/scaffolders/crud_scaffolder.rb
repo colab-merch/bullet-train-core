@@ -74,17 +74,20 @@ module BulletTrain
           parent_t_references = "t.references :#{parent_reference}"
           parent_add_reference = "add_reference :#{tableized_child}, :#{parent_reference}"
           parent_foreign_key = nil
-          File.open(migration_file_name).readlines.each do |line|
-            parent_foreign_key = line.match?(/#{parent_add_reference}|#{parent_t_references}/)
-            break if parent_foreign_key
-          end
 
-          unless parent_foreign_key
-            puts "#{child} does not have a foreign key referencing #{parent}".red
-            puts ""
-            puts "Please re-generate your model, or execute the following to add the foreign key:"
-            puts "rails generate migration add_#{parent_reference}_to_#{tableized_child} #{parent_reference}:references\n"
-            exit 1
+          if migration_file_name
+            File.open(migration_file_name).readlines.each do |line|
+              parent_foreign_key = line.match?(/#{parent_add_reference}|#{parent_t_references}/)
+              break if parent_foreign_key
+            end
+
+            unless parent_foreign_key
+              puts "#{child} does not have a foreign key referencing #{parent}".red
+              puts ""
+              puts "Please re-generate your model, or execute the following to add the foreign key:"
+              puts "rails generate migration add_#{parent_reference}_to_#{tableized_child} #{parent_reference}:references\n"
+              exit 1
+            end
           end
 
           unless parents.include?("Team")
