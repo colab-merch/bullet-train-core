@@ -1,17 +1,15 @@
 module BulletTrain
   module Roles
     class Engine < ::Rails::Engine
-      config.eager_load_paths << Role.full_path
-
       initializer "bullet_train-roles.config" do |app|
-        Role.set_root_path("#{Rails.root}/config/models")
+        Role.set_root_path("#{app.root}/config/models")
 
-        role_reloader = ActiveSupport::FileUpdateChecker.new([Role.full_path]) do
+        app.reloaders << app.config.file_watcher.new([
+          Role.full_path
+        ]) {}
+
+        config.to_prepare do
           Role.reload(true)
-        end
-
-        ActiveSupport::Reloader.to_prepare do
-          role_reloader.execute_if_updated
         end
       end
     end
